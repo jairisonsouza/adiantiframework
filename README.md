@@ -50,7 +50,14 @@ Isso pode demorar um pouco. Aguarde alguns minutos...
 Pronto!
 
 ## Acesso
-* Acesse o adianti em `http://localhost`
+* Acesse o adianti em `http://localhost`.
+
+Credenciais padrão:
+```
+Usuário: admin
+Senha: admin
+```
+
 * Para acessar o banco de dados, utilize uma ferramente compatível com PostgreSQL, como PgAdmin, DBeaver, ou similar com as credenciais do arquivo `docker-compose.yml`:
 ```
 POSTGRES_HOST: localhost
@@ -228,6 +235,12 @@ docker stack deploy -c docker/docker-compose-swarm.yml adianti
 ```
 
 Pronto, sua aplicação está sendo executada em `https://seudominio.com.br`.
+
+Credenciais padrão:
+```
+Usuário: admin
+Senha: admin
+```
 
 * Para acessar o banco de dados, utilize uma ferramente compatível com PostgreSQL, como PgAdmin, DBeaver, ou similar com as credenciais do arquivo `docker/docker-compose-swarm.yml`:
 ```
