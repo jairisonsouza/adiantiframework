@@ -67,7 +67,9 @@ POSTGRES_PASSWORD: MinhaSenhaSuperForte
 POSTGRES_PORT: 5432
 ```
 
-Para alterar a senha do banco de dados, ajuste os arquivos `adianti.php`, `communication.php`, `log.php` e `permission.php` localizados em `app/config/`.
+Para alterar a senha do banco de dados ajuste os arquivos `adianti.php`, `communication.php`, `log.php` e `permission.php` localizados em `app/config/`.
+
+Altere também o arquivo `docker-compose.yml` (ambiente local) ou `docker-compose-swarm.yml` (ambiente de rodução) do Docker.
 
 Altere somente a senha do banco de dados, evite fazer outras alterações para não comprometer a automação.
 
@@ -250,6 +252,12 @@ POSTGRES_USER: postgres
 POSTGRES_PASSWORD: MinhaSenhaSuperForte
 POSTGRES_PORT: 5432
 ```
+
+Para alterar a senha do banco de dados ajuste os arquivos `adianti.php`, `communication.php`, `log.php` e `permission.php` localizados em `app/config/`.
+
+Altere também o arquivo `docker-compose.yml` (ambiente local) ou `docker-compose-swarm.yml` (ambiente de rodução) do Docker.
+
+Altere somente a senha do banco de dados, evite fazer outras alterações para não comprometer a automação.
 
 ## Reparando ou removendo a aplicação
 
