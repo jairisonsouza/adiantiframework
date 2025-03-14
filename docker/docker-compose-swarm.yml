@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  adianti_app:
+    image: jairisondetran/adianti:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.adianti.rule=Host(`seudominio.com.br`)" # Substitua pelo seu domínio
+        - "traefik.http.routers.adianti.entrypoints=websecure"
+        - "traefik.http.routers.adianti.tls.certresolver=myresolver"
+        - "traefik.http.services.adianti.loadbalancer.server.port=80"
+    volumes:
+      - ../:/var/www/adianti
+    working_dir: /var/www/adianti
+    command: >
+      sh -c "composer update && apache2-foreground"
+    networks:
+      - adianti-net
+      - traefik-net
+
+  adianti_db:
+    image: postgres:16
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: MinhaSenhaSuperForte
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ../sql_scripts:/docker-entrypoint-initdb.d
+    networks:
+      - adianti-net
+    ports:
+      - 5432:5432
+
+volumes:
+  db_data:
+
+networks:
+  adianti-net:
+    external: true
+  traefik-net:
+    external: true

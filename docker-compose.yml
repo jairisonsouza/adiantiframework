@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  adianti_app:
+    image: jairisondetran/adianti:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - adianti_db
+    restart: always
+    networks:
+      - adianti-net
+    volumes:
+      - ./:/var/www/adianti
+    working_dir: /var/www/adianti
+    command: >
+      sh -c "composer update && apache2-foreground"
+
+  adianti_db:
+    image: postgres:16
+    container_name: adianti_db
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: MinhaSenhaSuperForte
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./sql_scripts:/docker-entrypoint-initdb.d
+    networks:
+      - adianti-net
+    ports:
+      - 5432:5432
+
+networks:
+  adianti-net:
+
+volumes:
+  db_data:
