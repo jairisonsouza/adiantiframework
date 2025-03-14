@@ -178,10 +178,10 @@ services:
         condition: on-failure
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.contratos.rule=Host(`contratos.detran.ap.gov.br`)" # Substitua pelo seu domínio
-        - "traefik.http.routers.contratos.entrypoints=websecure"
-        - "traefik.http.routers.contratos.tls.certresolver=myresolver"
-        - "traefik.http.services.contratos.loadbalancer.server.port=80"
+        - "traefik.http.routers.adianti.rule=Host(`seudominio.com.br`)" # Substitua pelo seu domínio
+        - "traefik.http.routers.adianti.entrypoints=websecure"
+        - "traefik.http.routers.adianti.tls.certresolver=myresolver"
+        - "traefik.http.services.adianti.loadbalancer.server.port=80"
     volumes:
       - ./:/var/www/adianti
     working_dir: /var/www/adianti
